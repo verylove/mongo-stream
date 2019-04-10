@@ -15,21 +15,18 @@
   "bulkSize": 1000,
   "adminPort": 3000,
   "ignoreResumeTokensOnStart": false,
+  "说明":"全量同步开关",
   "dumpOnStart": false,
+  "说明":"清空ES开关",
+  "ignoreDumpProgress":false,
+  "ignoreResumeTokensOnStart":false,
   "resumeTokenInterval": 60000,
   "resumeTokenCollection": "resumeToken",
   "dumpProgressCollection": "dumpProgress",
   "mappings": {
     "childCollectionName": {
       "index": "test",
-      "type": "$self",
-      "parent": "parentCollectionName",
-      "parentId": "childFieldPointingToParent",
-      "versionType": "elasticSearchVersionType",
-      "versionField": "fieldNameToUseForVersioning",
-      "transformations": [ 
-        { "op": "move", "from": "/hello", "path": "/transformed" }
-      ]
+      "type": "$self"
     }
   },
   "logLevel": "info"
