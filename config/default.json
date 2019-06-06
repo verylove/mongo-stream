@@ -1,32 +1,37 @@
 {
   "mongo": {
     "options": {
-      "poolSize": 100
+      "poolSize": 100,
+        "useNewUrlParser": true
     },
-    "url": "localhost:27017",
-    "database": "test",
-    "user": "admin",
-    "collections": ["test"]
+    "url": "license:linewell_license123@127.0.0.1:27017/admin?authSource=admin",
+    "database": "license",
+    "collections": ["license","catalog"]
   },
   "elasticsearch": {
-    "host": "localhost:9200",
-    "apiVersion": "2.4"
+    "host": "localhost:9200"
   },
   "bulkSize": 1000,
   "adminPort": 3000,
-  "ignoreResumeTokensOnStart": false,
+  "ignoreResumeTokensOnStart": true,
   "说明":"全量同步开关",
-  "dumpOnStart": false,
+  "dumpOnStart": true,
   "说明":"清空ES开关",
-  "ignoreDumpProgress":false,
-  "ignoreResumeTokensOnStart":false,
+  "ignoreDumpProgress":true,
   "resumeTokenInterval": 60000,
   "resumeTokenCollection": "resumeToken",
   "dumpProgressCollection": "dumpProgress",
   "mappings": {
     "childCollectionName": {
-      "index": "test",
-      "type": "$self"
+      "index": "license",
+      "type": "$self",
+      "parent": "parentCollectionName",
+      "parentId": "childFieldPointingToParent",
+      "versionType": "elasticSearchVersionType",
+      "versionField": "fieldNameToUseForVersioning",
+      "transformations": [ 
+        { "op": "move", "from": "/hello", "path": "/transformed" }
+      ]
     }
   },
   "logLevel": "info"
